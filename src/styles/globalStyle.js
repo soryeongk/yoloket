@@ -9,7 +9,7 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   html {
-    color: ${({ theme }) => theme.colors.gray100};
+    color: ${({ theme }) => theme.colors.gray300};
     font-family: Pretendard;
     font-size: 62.5%;
   }
