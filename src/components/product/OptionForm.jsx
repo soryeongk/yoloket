@@ -1,10 +1,21 @@
+import { useEffect, useState } from "react";
 import styled from "styled-components";
 
 import { arrow, comment, download } from "../../assets";
 import { toggleMenu } from "../../lib";
+import { getProductOption } from "../../lib/api";
 
 export default function OptionForm({ productDetail }) {
-  const { price, material, delivery, description } = productDetail;
+  const { id, price, material, delivery, description } = productDetail;
+  const [optionList, setOptionList] = useState([]);
+
+  useEffect(async () => {
+    const {
+      data: { optionGroupFrameList },
+    } = await getProductOption(id);
+
+    setOptionList(optionGroupFrameList);
+  }, []);
 
   return (
     <StForm>
@@ -29,21 +40,20 @@ export default function OptionForm({ productDetail }) {
         </StDescription>
         <StOptionWrapper>
           <StH3>옵션</StH3>
-          <StSelectWrapper onClick={toggleMenu}>
-            <label>사이즈를 선택해주세요</label>
-            <StSelect>
-              <StOption value="S">S</StOption>
-              <StOption value="M">M</StOption>
-            </StSelect>
-          </StSelectWrapper>
-          <StSelectWrapper onClick={toggleMenu}>
-            <label>색상을 선택해주세요</label>
-            <StSelect>
-              <StOption value="검정">검정</StOption>
-              <StOption value="하양">하양</StOption>
-              <StOption value="빨강">빨강</StOption>
-            </StSelect>
-          </StSelectWrapper>
+          {optionList &&
+            optionList.map((options, idx) => (
+              <StSelectWrapper key={idx} onClick={toggleMenu}>
+                <label>{options.optionTitle}를 선택해주세요</label>
+                <StSelect>
+                  {options.optionFrameValueList &&
+                    options.optionFrameValueList.map((option, i) => (
+                      <StOption key={`${idx}-${i}`} value="S">
+                        {option}
+                      </StOption>
+                    ))}
+                </StSelect>
+              </StSelectWrapper>
+            ))}
         </StOptionWrapper>
       </div>
       <StBtnWrapper>

@@ -21,7 +21,7 @@ export default function Product() {
       <ProductTitle productName={name} />
       <StProductDetailWrapper>
         <ProductInfo />
-        <OptionForm productDetail={{ price, material, delivery, description }} />
+        <OptionForm productDetail={{ id, price, material, delivery, description }} />
       </StProductDetailWrapper>
     </StMainWrapper>
   );

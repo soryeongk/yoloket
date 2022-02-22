@@ -17,7 +17,7 @@ export default function Main() {
     <StMainWrapper>
       <h1>욜로켓 인기 상품</h1>
       <StSection>
-        {productList.length > 0 &&
+        {productList &&
           productList.map((productDetail, idx) => (
             <ProductCard key={`product-${idx}-${productDetail.id}`} productDetail={productDetail} />
           ))}
