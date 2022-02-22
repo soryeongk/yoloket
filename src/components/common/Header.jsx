@@ -11,5 +11,5 @@ export default function Header() {
 }
 
 const StHeader = styled.header`
-  padding: 2.5rem 0;
+  padding: 2.5rem 2rem;
 `;
