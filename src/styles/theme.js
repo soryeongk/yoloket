@@ -1,62 +1,67 @@
 const colors = {
-  gray100: '#242424',
-  gray200: '#3D3D3D',
-  white: '#FFFFFF',
-  white200: '#F7F7F7',
-  white300: '#EFEFEF',
-  point100: '#752eff',
-  point200: '#F4F4FF',
+  gray100: '#c5c5c5',
+  gray200: '#242424',
+  white100: '#FFFFFF',
+  white200: '#E7E7E7',
+  magenta100: '#F4F4FF',
+  magenta200: '#f8f5ff',
+  magenta300: '#752eff',
 };
 
 const fonts = {
   header100: `
     font-family: Pretendard;
     font-weight: 700;
-    font-size: 6.2rem;
-    line-height: 1.3;
-    letter-spacing: -0.1rem;
+    font-size: 3rem;
+    line-height: 1;
   `,
   header200: `
     font-family: Pretendard;
     font-weight: 800;
-    font-size: 4rem;
-    line-height: 1.3;
-    letter-spacing: -0.1rem;
+    font-size: 2.5rem;
+    line-height: 1;
+  `,
+  header300: `
+    font-family: Pretendard;
+    font-weight: 700;
+    font-size: 2rem;
+    line-height: 1;
   `,
   body100: `
     font-family: Pretendard;
-    font-weight: 500;
-    font-size: 2.4rem;
-    line-height: 1.5;
-    letter-spacing: -0.07rem;
+    font-weight: 600;
+    font-size: 2rem;
+    line-height: 1;
   `,
   body200: `
     font-family: Pretendard;
     font-weight: 500;
     font-size: 2rem;
-    line-height: 1.3;
-    letter-spacing: -0.1rem;
+    line-height: 1;
+  `,
+  body300: `
+    font-family: Pretendard;
+    font-weight: 600;
+    font-size: 1.8rem;
+    line-height: 1;
+  `,
+  body400: `
+    font-family: Pretendard;
+    font-weight: 400;
+    font-size: 1.8rem;
+    line-height: 1;
   `,
   caption100: `
     font-family: Pretendard;
-    font-weight: 500;
-    font-size: 1.2rem;
-    line-height: 1.3;
-    letter-spacing: -0.1rem;
-  `,
-  button100: `
-    font-family: Pretendard;
-    font-weight: 700;
-    font-size: 1.8rem;
-    line-height: 1.3;
-    letter-spacing: -0.1rem;
-  `,
-  button200: `
-    font-family: Pretendard;
     font-weight: 600;
-    font-size: 1.4rem;
-    line-height: 1.3;
-    letter-spacing: -0.1rem;
+    font-size: 1.5rem;
+    line-height: 1;
+  `,
+  caption200: `
+    font-family: Pretendard;
+    font-weight: 400;
+    font-size: 1.5rem;
+    line-height: 1;
   `,
 };
 
