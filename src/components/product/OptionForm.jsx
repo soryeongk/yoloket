@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import styled from "styled-components";
 
-import { arrow, comment, download } from "../../assets";
-import { toggleMenu } from "../../lib";
+import { comment, download } from "../../assets";
 import { getProductOption } from "../../lib/api";
+import { Selection } from ".";
 
 export default function OptionForm({ productDetail }) {
   const { id, price, material, delivery, description } = productDetail;
@@ -40,20 +40,7 @@ export default function OptionForm({ productDetail }) {
         </StDescription>
         <StOptionWrapper>
           <StH3>옵션</StH3>
-          {optionList &&
-            optionList.map((options, idx) => (
-              <StSelectWrapper key={idx} onClick={toggleMenu}>
-                <label>{options.optionTitle}를 선택해주세요</label>
-                <StSelect>
-                  {options.optionFrameValueList &&
-                    options.optionFrameValueList.map((option, i) => (
-                      <StOption key={`${idx}-${i}`} value="S">
-                        {option}
-                      </StOption>
-                    ))}
-                </StSelect>
-              </StSelectWrapper>
-            ))}
+          {optionList && optionList.map((options, idx) => <Selection key={idx} options={options} />)}
         </StOptionWrapper>
       </div>
       <StBtnWrapper>
@@ -130,49 +117,6 @@ const StH3 = styled.h3`
   margin-bottom: 1.5rem;
 
   ${({ theme }) => theme.fonts.body200}
-`;
-
-const StSelectWrapper = styled.div`
-  position: relative;
-  border: 0.05rem solid ${({ theme }) => theme.colors.gray200};
-  padding: 1.2rem;
-  background: ${({ theme }) => theme.colors.white100};
-  width: 100%;
-  ${({ theme }) => theme.fonts.caption200}
-
-  &::after {
-    position: absolute;
-    top: 0.8rem;
-    right: 1rem;
-    content: url(${arrow});
-  }
-
-  & + & {
-    margin-top: 1rem;
-  }
-`;
-
-const StSelect = styled.ul`
-  visibility: hidden;
-
-  position: absolute;
-  top: 3.95rem;
-  left: 0;
-  z-index: 5;
-
-  padding: 0.5rem 0;
-  background-color: ${({ theme }) => theme.colors.white200};
-
-  width: 100%;
-`;
-
-const StOption = styled.li`
-  padding: 0.5rem 1.2rem;
-
-  &:hover {
-    background-color: ${({ theme }) => theme.colors.magenta100};
-    color: ${({ theme }) => theme.colors.magenta300};
-  }
 `;
 
 const StBtnWrapper = styled.div`
