@@ -1,5 +1,5 @@
-import { createGlobalStyle } from 'styled-components';
-import reset from 'styled-reset';
+import { createGlobalStyle } from "styled-components";
+import reset from "styled-reset";
 
 export const GlobalStyle = createGlobalStyle`
   ${reset}
@@ -12,6 +12,12 @@ export const GlobalStyle = createGlobalStyle`
     color: ${({ theme }) => theme.colors.gray100};
     font-family: Pretendard;
     font-size: 62.5%;
+  }
+
+  body {
+    width: 144rem;
+    height: 100%;
+    margin: 0 auto;
   }
 
   a {
