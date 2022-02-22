@@ -1,21 +1,22 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 export default function ProductCard({ productDetail }) {
-  const { name, price, country } = productDetail;
+  const { id, name, price, country } = productDetail;
 
   return (
-    <StArticle>
+    <StCardWrapper to={`/product/${id}`}>
       <StProductThumbnail src="image" alt="제품 썸네일" />
       <div>
         <StProductName>{name}</StProductName>
         <StPrice>{price}원</StPrice>
         <StCountry>{country}</StCountry>
       </div>
-    </StArticle>
+    </StCardWrapper>
   );
 }
 
-const StArticle = styled.article`
+const StCardWrapper = styled(Link)`
   display: flex;
   flex-direction: column;
   justify-content: space-between;

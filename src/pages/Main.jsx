@@ -10,7 +10,6 @@ export default function Main() {
   useEffect(async () => {
     const { data } = await getProductList();
 
-    console.log("data", data);
     setProductList(data);
   }, []);
 
