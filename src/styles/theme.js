@@ -1,11 +1,11 @@
 const colors = {
-  gray100: '#c5c5c5',
-  gray200: '#242424',
-  white100: '#FFFFFF',
-  white200: '#E7E7E7',
-  magenta100: '#F4F4FF',
-  magenta200: '#f8f5ff',
-  magenta300: '#752eff',
+  gray100: "#c5c5c5",
+  gray200: "#242424",
+  white100: "#FFFFFF",
+  white200: "#E7E7E7",
+  magenta100: "#F4F4FF",
+  magenta200: "#f8f5ff",
+  magenta300: "#752eff",
 };
 
 const fonts = {

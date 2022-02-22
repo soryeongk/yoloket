@@ -1,7 +1,7 @@
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 
-import Main from './Main';
-import Product from './Product';
+import Main from "./Main";
+import Product from "./Product";
 
 export default function Router() {
   return (
