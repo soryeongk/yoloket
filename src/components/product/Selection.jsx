@@ -1,3 +1,4 @@
+import { useState } from "react";
 import styled from "styled-components";
 
 import { arrow } from "../../assets";
@@ -5,12 +6,22 @@ import { toggleMenu } from "../../lib";
 
 export default function Selection({ options }) {
   const { optionTitle, optionFrameValueList } = options;
+  const [optionValue, setOptionValue] = useState(`${optionTitle}를 선택해주세요`);
+
+  function handleOptionValue(op) {
+    setOptionValue(op);
+  }
 
   return (
     <StSelectWrapper onClick={toggleMenu}>
-      <label>{optionTitle}를 선택해주세요</label>
+      <label>{optionValue}</label>
       <StSelect>
-        {optionFrameValueList && optionFrameValueList.map((option, i) => <StOption key={i}>{option}</StOption>)}
+        {optionFrameValueList &&
+          optionFrameValueList.map((option, i) => (
+            <StOption key={i} onClick={() => handleOptionValue(option)}>
+              {option}
+            </StOption>
+          ))}
       </StSelect>
     </StSelectWrapper>
   );
