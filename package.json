@@ -6,7 +6,7 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "lint": "npm run lint-eslint && npm run lint-prettier",
+    "lint": "npm run lint-prettier && npm run lint-eslint",
     "lint-eslint": "eslint --ignore-path .gitignore src/**/*{js,jsx} --fix",
     "lint-prettier": "prettier --write \"src/**/*.(js|jsx)\""
   },
