@@ -36,5 +36,75 @@
       "delivery": "해외 무료 배송 | 주문 후 최대 3일 내로 발송 가능",
       "description": "제품의 소개가 들어갈 예정입니다💕 판매자가 직접 작성한 제품의 설명이 들어갈 예정입니다.😎 제품의 특징과 강점을 잘 살린 소개가 들어가는 것이 좋을 것 같습니다. 어떤 상황, 분위기, 장소에서 활용하면 좋은 제품인지에 대한 설명도 있으면 좋을 듯합니다. 간결하고 직관적이면서 구체적인 설명이 들어간다면 더욱 구매를 유도할 수 있을 것으로 보입니다."      
     }
-  ]
+  ],
+  "options" : {
+    "optionType": "group",
+    "optionGroupFrameList": [
+      {
+        "optionFrameValueList": [
+          "스몰",
+          "라지"
+        ],
+        "optionTitle": "사이즈"
+      },
+      {
+        "optionFrameValueList": [
+          "검정",
+          "하양",
+          "빨강"
+        ],
+        "optionTitle": "색상"
+      }
+    ],
+    "optionList": [
+      {
+        "optionNameList": [
+          "S",
+          "검정"
+        ],
+        "remainCount": 0,
+        "name": "S / 검정"
+      },
+      {
+        "optionNameList": [
+          "S",
+          "하양"
+        ],
+        "remainCount": 0,
+        "name": "S / 하양"
+      },
+      {
+        "optionNameList": [
+          "S",
+          "빨강"
+        ],
+        "remainCount": 0,
+        "name": "S / 빨강"
+      },
+      {
+        "optionNameList": [
+          "M",
+          "검정"
+        ],
+        "remainCount": 1,
+        "name": "M / 검정"
+      },
+      {
+        "optionNameList": [
+          "M",
+          "하양"
+        ],
+        "remainCount": 1,
+        "name": "M / 하양"
+      },
+      {
+        "optionNameList": [
+          "M",
+          "빨강"
+        ],
+        "remainCount": 0,
+        "name": "M / 빨강"
+      }
+    ]
+  }
 }

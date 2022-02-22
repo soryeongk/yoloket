@@ -2,20 +2,31 @@ import { useEffect, useState } from "react";
 import styled from "styled-components";
 
 import { comment, download } from "../../assets";
+import { checkSoldOut } from "../../lib";
 import { getProductOption } from "../../lib/api";
 import { Selection } from ".";
 
 export default function OptionForm({ productDetail }) {
   const { id, price, material, delivery, description } = productDetail;
-  const [optionList, setOptionList] = useState([]);
+  const [optionFrameList, setOptionFrameList] = useState([]);
+  const [optionGroupList, setOptionGroupList] = useState([]);
 
   useEffect(async () => {
     const {
-      data: { optionGroupFrameList },
+      data: { optionGroupFrameList, optionList },
     } = await getProductOption(id);
 
-    setOptionList(optionGroupFrameList);
+    setOptionFrameList(optionGroupFrameList);
+    setOptionGroupList(optionList);
   }, []);
+
+  useEffect(() => {
+    if (optionGroupList.length) {
+      const temp = checkSoldOut(optionGroupList);
+
+      console.log("temp", temp);
+    }
+  }, [optionGroupList]);
 
   return (
     <StForm>
@@ -40,7 +51,7 @@ export default function OptionForm({ productDetail }) {
         </StDescription>
         <StOptionWrapper>
           <StH3>옵션</StH3>
-          {optionList && optionList.map((options, idx) => <Selection key={idx} options={options} />)}
+          {optionFrameList && optionFrameList.map((options, idx) => <Selection key={idx} options={options} />)}
         </StOptionWrapper>
       </div>
       <StBtnWrapper>
