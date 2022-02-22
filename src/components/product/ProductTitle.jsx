@@ -1,10 +1,10 @@
 import styled from "styled-components";
 
-export default function ProductTitle() {
+export default function ProductTitle({ productName }) {
   return (
     <StHeader>
       <StTitleWrapper>
-        <StTitle>[인기 상품 1위] 욜로켓 시그니처 디자인 제품</StTitle>
+        <StTitle>{productName}</StTitle>
         <StOrderAlways>상시주문가능</StOrderAlways>
       </StTitleWrapper>
       <StTagWrapper>

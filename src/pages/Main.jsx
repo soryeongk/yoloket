@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import styled from "styled-components";
 
-import { getProductList } from "../api";
 import ProductCard from "../components/main/ProductCard";
+import { getProductList } from "../lib/api";
 
 export default function Main() {
   const [productList, setProductList] = useState([]);

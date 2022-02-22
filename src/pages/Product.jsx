@@ -1,14 +1,27 @@
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import styled from "styled-components";
 
 import { OptionForm, ProductInfo, ProductTitle } from "../components/product";
+import { getProductDetail } from "../lib/api";
 
 export default function Product() {
+  const { id } = useParams();
+  const [productData, setProductData] = useState({ name: "", price: "", material: "", delivery: "", description: "" });
+  const { name, price, material, delivery, description } = productData;
+
+  useEffect(async () => {
+    const { data } = await getProductDetail(id);
+
+    setProductData(data);
+  }, []);
+
   return (
     <StMainWrapper>
-      <ProductTitle />
+      <ProductTitle productName={name} />
       <StProductDetailWrapper>
         <ProductInfo />
-        <OptionForm />
+        <OptionForm productDetail={{ price, material, delivery, description }} />
       </StProductDetailWrapper>
     </StMainWrapper>
   );

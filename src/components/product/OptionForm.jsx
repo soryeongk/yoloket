@@ -1,24 +1,11 @@
 import styled from "styled-components";
 
 import { arrow, comment, download } from "../../assets";
+import { toggleMenu } from "../../lib";
 
-function toggleMenu(e) {
-  const optionWrapper = e.currentTarget.lastChild;
+export default function OptionForm({ productDetail }) {
+  const { price, material, delivery, description } = productDetail;
 
-  if (!optionWrapper) return;
-
-  const visibility = optionWrapper.style.visibility;
-
-  if (visibility === "hidden") {
-    optionWrapper.style.visibility = "visible";
-  } else {
-    optionWrapper.style.visibility = "hidden";
-  }
-
-  return;
-}
-
-export default function OptionForm() {
   return (
     <StForm>
       <div>
@@ -30,20 +17,15 @@ export default function OptionForm() {
         </StArticle>
         <StDetail>
           <strong>소재</strong>
-          <h2>50% COTTON, 50% POLYESTER</h2>
+          <h2>{material}</h2>
         </StDetail>
         <StDetail>
           <strong>배송</strong>
-          <h2>해외 무료 배송 | 주문 후 최대 3일 내로 발송 가능</h2>
+          <h2>{delivery}</h2>
         </StDetail>
         <StDescription>
           <strong>제품 간단 소개</strong>
-          <h2>
-            제품의 소개가 들어갈 예정입니다💕 판매자가 직접 작성한 제품의 설명이 들어갈 예정입니다.😎 제품의 특징과
-            강점을 잘 살린 소개가 들어가는 것이 좋을 것 같습니다. 어떤 상황, 분위기, 장소에서 활용하면 좋은 제품인지에
-            대한 설명도 있으면 좋을 듯합니다. 간결하고 직관적이면서 구체적인 설명이 들어간다면 더욱 구매를 유도할 수
-            있을 것으로 보입니다.
-          </h2>
+          <h2>{description}</h2>
         </StDescription>
         <StOptionWrapper>
           <StH3>옵션</StH3>
@@ -67,7 +49,7 @@ export default function OptionForm() {
       <StBtnWrapper>
         <StComment src={comment} alt="판매자에게 문의하기" />
         <StButton type="submit" disabled={true}>
-          구매하기
+          {price} 구매하기
         </StButton>
       </StBtnWrapper>
     </StForm>
@@ -161,7 +143,7 @@ const StSelectWrapper = styled.div`
 `;
 
 const StSelect = styled.ul`
-  /* visibility: hidden; */
+  visibility: hidden;
 
   position: absolute;
   top: 3.95rem;
