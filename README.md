@@ -7,13 +7,13 @@
 제품의 목록을 보여주는 메인 화면과 상세 화면을 모두 만들어봅니다.
 
 ## 메인 화면
-![image](https://user-images.githubusercontent.com/40630964/155101740-7c3d9e4b-7d7b-4aa1-8c9d-f3bd7f2e5015.png)
+![image](https://user-images.githubusercontent.com/40630964/155105851-b2319f9c-cd7a-49d1-b128-32f9695f64ef.png)
 
 ## 제품 상세 화면
-![image](https://user-images.githubusercontent.com/40630964/155102032-a65f37bf-145e-4195-a171-8f329ff6003a.png)
+![image](https://user-images.githubusercontent.com/40630964/155105900-a4a27826-b9ea-4ca1-8ea1-205983724132.png)
 
 - 사이즈/색상 선택 부분
 <img width="520px" src="https://user-images.githubusercontent.com/40630964/155102606-0bba7adf-64c1-42a0-9fe2-44a13029d531.png" />
 
 ## 선택 완료 후 결과 화면
-![image](https://user-images.githubusercontent.com/40630964/155104612-16d670e4-3f59-4cab-a86c-f5a00bf53214.png)
+![image](https://user-images.githubusercontent.com/40630964/155106206-4c2be784-6b64-4955-afa9-1b59811c44a7.png)
