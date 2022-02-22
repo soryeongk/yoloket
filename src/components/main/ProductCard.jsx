@@ -1,13 +1,15 @@
 import styled from "styled-components";
 
-export default function ProductCard() {
+export default function ProductCard({ productDetail }) {
+  const { name, price, country } = productDetail;
+
   return (
     <StArticle>
       <StProductThumbnail src="image" alt="제품 썸네일" />
       <div>
-        <StProductName>[인기 상품 1위] 욜로켓 시그니처 디자인 제품</StProductName>
-        <StPrice>18,900원</StPrice>
-        <StCountry>미국 | 해외 무료 배송</StCountry>
+        <StProductName>{name}</StProductName>
+        <StPrice>{price}원</StPrice>
+        <StCountry>{country}</StCountry>
       </div>
     </StArticle>
   );

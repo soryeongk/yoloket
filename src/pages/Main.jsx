@@ -1,16 +1,27 @@
+import { useEffect, useState } from "react";
 import styled from "styled-components";
 
+import { getProductList } from "../api";
 import ProductCard from "../components/main/ProductCard";
 
 export default function Main() {
+  const [productList, setProductList] = useState([]);
+
+  useEffect(async () => {
+    const { data } = await getProductList();
+
+    console.log("data", data);
+    setProductList(data);
+  }, []);
+
   return (
     <StMainWrapper>
       <h1>욜로켓 인기 상품</h1>
       <StSection>
-        <ProductCard />
-        <ProductCard />
-        <ProductCard />
-        <ProductCard />
+        {productList.length > 0 &&
+          productList.map((productDetail, idx) => (
+            <ProductCard key={`product-${idx}-${productDetail.id}`} productDetail={productDetail} />
+          ))}
       </StSection>
     </StMainWrapper>
   );
