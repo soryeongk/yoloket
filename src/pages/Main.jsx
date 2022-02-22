@@ -1,41 +1,39 @@
+import styled from "styled-components";
+
+import ProductCard from "../components/main/ProductCard";
+
 export default function Main() {
   return (
-    <main>
+    <StMainWrapper>
       <h1>욜로켓 인기 상품</h1>
-      <section>
-        <article>
-          <img src="image" alt="제품 썸네일" />
-          <div>
-            <h2>[인기 상품 1위] 욜로켓 시그니처 디자인 제품</h2>
-            <h2>18,900원</h2>
-            <h3>미국 | 해외 무료 배송</h3>
-          </div>
-        </article>
-        <article>
-          <img src="image" alt="제품 썸네일" />
-          <div>
-            <h2>[인기 상품 1위] 욜로켓 시그니처 디자인 제품</h2>
-            <h2>18,900원</h2>
-            <h3>미국 | 해외 무료 배송</h3>
-          </div>
-        </article>
-        <article>
-          <img src="image" alt="제품 썸네일" />
-          <div>
-            <h2>[인기 상품 1위] 욜로켓 시그니처 디자인 제품</h2>
-            <h2>18,900원</h2>
-            <h3>미국 | 해외 무료 배송</h3>
-          </div>
-        </article>
-        <article>
-          <img src="image" alt="제품 썸네일" />
-          <div>
-            <h2>[인기 상품 1위] 욜로켓 시그니처 디자인 제품</h2>
-            <h2>18,900원</h2>
-            <h3>미국 | 해외 무료 배송</h3>
-          </div>
-        </article>
-      </section>
-    </main>
+      <StSection>
+        <ProductCard />
+        <ProductCard />
+        <ProductCard />
+        <ProductCard />
+      </StSection>
+    </StMainWrapper>
   );
 }
+
+const StMainWrapper = styled.main`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  width: 100%;
+  height: calc(100vh - 9.2rem);
+
+  ${({ theme }) => theme.fonts.header100}
+`;
+
+const StSection = styled.section`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  margin: 5.3rem 2rem;
+
+  ${({ theme }) => theme.fonts.header300}
+`;
