@@ -6,10 +6,10 @@ export default function Product() {
   return (
     <StMainWrapper>
       <ProductTitle />
-      <div>
+      <StProductDetailWrapper>
         <ProductInfo />
         <OptionForm />
-      </div>
+      </StProductDetailWrapper>
     </StMainWrapper>
   );
 }
@@ -17,4 +17,11 @@ export default function Product() {
 const StMainWrapper = styled.main`
   padding: 4.5rem 8rem 8rem 8rem;
   width: 100%;
+`;
+
+const StProductDetailWrapper = styled.div`
+  display: flex;
+  justify-content: space-between;
+
+  padding-top: 2.8rem;
 `;

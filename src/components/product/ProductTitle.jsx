@@ -23,7 +23,7 @@ const StHeader = styled.header`
   align-items: flex-end;
   justify-content: space-between;
 
-  border-bottom: 0.1rem solid ${({ theme }) => theme.colors.white200};
+  border-bottom: 0.1rem solid ${({ theme }) => theme.colors.white300};
   padding-bottom: 2.5rem;
 
   width: 100%;
