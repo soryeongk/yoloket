@@ -7,7 +7,7 @@ export default function ResultModal({ optionSelected, onCloseModal }) {
         <StH1>고객님의 구매 옵션을 안내드립니다.</StH1>
         {Object.entries(optionSelected).map((option, i) => (
           <li key={i}>
-            {option[0]}: {option[1]}
+            {option[0]}: <StStrong>{option[1]}</StStrong>
           </li>
         ))}
       </StNoticeWrapper>
@@ -38,23 +38,24 @@ const StModalWrapper = styled.div`
 const StNoticeWrapper = styled.ul`
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
   gap: 1rem;
 
   border: 0.1rem solid ${({ theme }) => theme.colors.magenta300};
+  padding: 5rem 7rem;
   background-color: ${({ theme }) => theme.colors.white200};
 
-  width: 50rem;
-  height: 25rem;
-
   ${({ theme }) => theme.fonts.body100}
+  color: ${({ theme }) => theme.colors.gray200};
+`;
+
+const StStrong = styled.strong`
   color: ${({ theme }) => theme.colors.magenta300};
 `;
 
 const StH1 = styled.h1`
   ${({ theme }) => theme.fonts.header200}
-  margin: 2rem 0;
+  margin-bottom: 2rem;
 `;
 
 const StButton = styled.button`
