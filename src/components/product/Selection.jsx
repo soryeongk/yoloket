@@ -94,7 +94,7 @@ const StSelect = styled.ul`
 `;
 
 const StOption = styled.li`
-  padding: 0.5rem 1.2rem;
+  padding: 1rem 1.2rem;
 
   ${({ issoldout }) =>
     issoldout
