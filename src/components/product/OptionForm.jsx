@@ -7,7 +7,7 @@ import { getProductOption } from "../../lib/api";
 import { Selection } from ".";
 
 export default function OptionForm({ productDetail }) {
-  const { id, price, material, delivery, description } = productDetail;
+  const { price, material, delivery, description } = productDetail;
   const [optionFrameList, setOptionFrameList] = useState([]);
   const [optionGroupList, setOptionGroupList] = useState([]);
 
@@ -50,7 +50,7 @@ export default function OptionForm({ productDetail }) {
   useEffect(async () => {
     const {
       data: { optionGroupFrameList, optionList },
-    } = await getProductOption(id);
+    } = await getProductOption();
 
     setOptionFrameList(optionGroupFrameList);
     setOptionGroupList(optionList);
