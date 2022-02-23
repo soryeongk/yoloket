@@ -31,14 +31,11 @@ export default function Selection({ ableSelect, selectableOption, options, optio
           optionFrameValueList &&
           optionFrameValueList.map((option, i) => {
             let isSoldOut = false;
+            const priorOption = selectableOption[optionSelected["사이즈"]];
 
             if (optionTitle === "사이즈" && !selectableOption[option]) {
               isSoldOut = true;
-            } else if (
-              optionTitle !== "사이즈" &&
-              selectableOption[optionSelected["사이즈"]] &&
-              !selectableOption[optionSelected["사이즈"]].includes(option)
-            ) {
+            } else if (optionTitle !== "사이즈" && priorOption && !priorOption.includes(option)) {
               isSoldOut = true;
             }
 
