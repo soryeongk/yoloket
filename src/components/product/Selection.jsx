@@ -1,4 +1,3 @@
-import { useState } from "react";
 import styled, { css } from "styled-components";
 
 import { arrow, arrowActive } from "../../assets";
@@ -6,11 +5,9 @@ import { toggleMenu } from "../../lib";
 
 export default function Selection({ ableSelect, selectableOption, options, optionSelected, onSelectOptions }) {
   const { optionTitle, optionFrameValueList } = options;
-  const [optionValue, setOptionValue] = useState(`${optionTitle}를 선택해주세요`);
 
   function handleOptionValue(isSoldOut, op) {
     if (!isSoldOut) {
-      setOptionValue(op);
       onSelectOptions(optionTitle, op);
     }
   }
@@ -18,14 +15,12 @@ export default function Selection({ ableSelect, selectableOption, options, optio
   function handleClickSelect(e) {
     if (ableSelect) {
       toggleMenu(e);
-    } else {
-      return;
     }
   }
 
   return (
     <StSelectWrapper ableselect={ableSelect} onClick={handleClickSelect}>
-      <label>{optionValue}</label>
+      <label>{optionSelected[optionTitle]}</label>
       <StSelect>
         {ableSelect &&
           optionFrameValueList &&

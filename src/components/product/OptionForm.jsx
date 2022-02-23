@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import styled from "styled-components";
 
 import { comment, download } from "../../assets";
@@ -6,15 +6,16 @@ import { convertKeyName } from "../../lib";
 import { getProductOption } from "../../lib/api";
 import { Selection } from ".";
 
+const OPTION_DEFAULT = " 옵션을 선택해주세요";
+
 export default function OptionForm({ productDetail }) {
   const { price, material, delivery, description } = productDetail;
   const [optionFrameList, setOptionFrameList] = useState([]);
   const [optionGroupList, setOptionGroupList] = useState([]);
 
   const [optionSelected, setOptionSelected] = useState({});
-  const [btnDisabled, setBtnDisabled] = useState(true);
 
-  const selectableOptionList = (function () {
+  const selectableOptionList = useMemo(() => {
     const result = {};
 
     optionGroupList
@@ -35,7 +36,19 @@ export default function OptionForm({ productDetail }) {
       });
 
     return result;
-  })();
+  }, [optionGroupList]);
+
+  const btnDisabled = useMemo(() => {
+    const selectedValues = Object.values(optionSelected).filter((value) => !value.includes(OPTION_DEFAULT));
+
+    if (!optionFrameList || !optionGroupList) {
+      return true;
+    } else if (selectedValues.length && optionFrameList.length && selectedValues.length === optionFrameList.length) {
+      return false;
+    } else {
+      return true;
+    }
+  }, [optionSelected]);
 
   function handleSelectOptions(title, op) {
     setOptionSelected((current) => {
@@ -54,23 +67,13 @@ export default function OptionForm({ productDetail }) {
 
     setOptionFrameList(optionGroupFrameList);
     setOptionGroupList(optionList);
-
-    optionFrameList.map((option) => {
-      handleSelectOptions(option.optionTitle, "");
-    });
   }, []);
 
   useEffect(() => {
-    const selectedValues = Object.values(optionSelected);
-
-    if (!optionFrameList || !optionGroupList) {
-      return;
-    } else if (selectedValues.length && optionFrameList.length && selectedValues.length === optionFrameList.length) {
-      setBtnDisabled(false);
-    } else {
-      return;
-    }
-  }, [optionSelected]);
+    optionFrameList.map((option) => {
+      handleSelectOptions(option.optionTitle, `${option.optionTitle + OPTION_DEFAULT}`);
+    });
+  }, [optionFrameList]);
 
   return (
     <StForm>
@@ -97,7 +100,8 @@ export default function OptionForm({ productDetail }) {
           <StH3>옵션</StH3>
           {optionFrameList &&
             optionFrameList.map((options, idx) => {
-              const ableSelect = Object.values(optionSelected).length >= idx;
+              const ableSelect =
+                Object.values(optionSelected).filter((value) => !value.includes(OPTION_DEFAULT)).length >= idx;
 
               return (
                 <Selection
