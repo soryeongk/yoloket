@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import styled from "styled-components";
 
 import { comment, download } from "../../assets";
+import { convertKeyName } from "../../lib";
 import { getProductOption } from "../../lib/api";
 import { Selection } from ".";
 
@@ -20,7 +21,7 @@ export default function OptionForm({ productDetail }) {
       .filter((optionGroup) => optionGroup.remainCount)
       .map((option) => option.optionNameList)
       .map((option) => {
-        const key = option[0] === "S" ? "스몰" : "라지";
+        const key = convertKeyName(option[0]);
 
         return [key, option[1]];
       })

@@ -43,7 +43,8 @@
       {
         "optionFrameValueList": [
           "스몰",
-          "라지"
+          "라지", 
+          "라라지"
         ],
         "optionTitle": "사이즈"
       },
@@ -102,8 +103,32 @@
           "M",
           "빨강"
         ],
-        "remainCount": 0,
+        "remainCount": 1,
         "name": "M / 빨강"
+      },
+      {
+        "optionNameList": [
+          "L",
+          "검정"
+        ],
+        "remainCount": 0,
+        "name": "L / 검정"
+      },
+      {
+        "optionNameList": [
+          "L",
+          "하양"
+        ],
+        "remainCount": 1,
+        "name": "L / 하양"
+      },
+      {
+        "optionNameList": [
+          "L",
+          "빨강"
+        ],
+        "remainCount": 1,
+        "name": "L / 빨강"
       }
     ]
   }

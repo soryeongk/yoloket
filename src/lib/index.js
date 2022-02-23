@@ -13,3 +13,16 @@ export function toggleMenu(e) {
 
   return;
 }
+
+export function convertKeyName(key) {
+  switch (key) {
+    case "S":
+      return "스몰";
+    case "M":
+      return "라지";
+    case "L":
+      return "라라지";
+    default:
+      return "사이즈";
+  }
+}
