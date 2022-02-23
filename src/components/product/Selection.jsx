@@ -1,19 +1,28 @@
 import { useState } from "react";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
-import { arrow } from "../../assets";
+import { arrow, arrowActive } from "../../assets";
 import { toggleMenu } from "../../lib";
 
-export default function Selection({ options }) {
+export default function Selection({ ableSelect, options, soldOutList, optionSelected, onSelectOptions }) {
   const { optionTitle, optionFrameValueList } = options;
   const [optionValue, setOptionValue] = useState(`${optionTitle}를 선택해주세요`);
 
   function handleOptionValue(op) {
     setOptionValue(op);
+    onSelectOptions(optionTitle, op);
+  }
+
+  function handleClickSelect(e) {
+    if (ableSelect) {
+      toggleMenu(e);
+    } else {
+      return;
+    }
   }
 
   return (
-    <StSelectWrapper onClick={toggleMenu}>
+    <StSelectWrapper ableselect={ableSelect} onClick={handleClickSelect}>
       <label>{optionValue}</label>
       <StSelect>
         {optionFrameValueList &&
@@ -29,7 +38,17 @@ export default function Selection({ options }) {
 
 const StSelectWrapper = styled.div`
   position: relative;
-  border: 0.05rem solid ${({ theme }) => theme.colors.gray200};
+
+  ${({ ableselect }) =>
+    ableselect
+      ? css`
+          border: 0.05rem solid ${({ theme }) => theme.colors.gray200};
+        `
+      : css`
+          border: 0.05rem solid ${({ theme }) => theme.colors.gray100};
+          color: ${({ theme }) => theme.colors.gray100};
+        `}
+
   padding: 1.2rem;
   background: ${({ theme }) => theme.colors.white100};
   width: 100%;
@@ -39,7 +58,8 @@ const StSelectWrapper = styled.div`
     position: absolute;
     top: 0.8rem;
     right: 1rem;
-    content: url(${arrow});
+    content: url(${({ ableselect }) => (ableselect ? arrowActive : arrow)});
+    /* content: url(${arrow}); */
   }
 
   & + & {

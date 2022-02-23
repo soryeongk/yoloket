@@ -10,6 +10,28 @@ export default function OptionForm({ productDetail }) {
   const { id, price, material, delivery, description } = productDetail;
   const [optionFrameList, setOptionFrameList] = useState([]);
   const [optionGroupList, setOptionGroupList] = useState([]);
+  const [optionSoldOutList, setOptionSoldOutList] = useState([]);
+
+  const [optionSelected, setOptionSelected] = useState({});
+  const [btnDisabled, setBtnDisabled] = useState(true);
+
+  function handleSelectOptions(title, op) {
+    setOptionSelected((current) => {
+      const newObj = { ...current };
+
+      if (title === "사이즈") {
+        if (op === "스몰") {
+          newObj[title] = "S";
+        } else if (op === "라지") {
+          newObj[title] = "M";
+        }
+      } else {
+        newObj[title] = op;
+      }
+
+      return newObj;
+    });
+  }
 
   useEffect(async () => {
     const {
@@ -18,15 +40,35 @@ export default function OptionForm({ productDetail }) {
 
     setOptionFrameList(optionGroupFrameList);
     setOptionGroupList(optionList);
+
+    optionFrameList.map((option) => {
+      handleSelectOptions(option.optionTitle, "");
+    });
   }, []);
 
   useEffect(() => {
-    if (optionGroupList.length) {
-      const temp = checkSoldOut(optionGroupList);
+    if (optionFrameList.length && optionGroupList.length) {
+      const soldOutList = checkSoldOut(optionGroupList);
 
-      console.log("temp", temp);
+      setOptionSoldOutList(soldOutList);
     }
   }, [optionGroupList]);
+
+  // useEffect(() => {
+  //   const selectedValues = Object.values(optionSelected);
+
+  //   if (!optionFrameList || !optionGroupList) {
+  //     return;
+  //   } else if (
+  //     selectedValues.length === optionFrameList.length &&
+  //     optionSoldOutList.length &&
+  //     !optionSoldOutList.includes(selectedValues.join(" / "))
+  //   ) {
+  //     setBtnDisabled(false);
+  //   } else {
+  //     return;
+  //   }
+  // }, [optionSelected]);
 
   return (
     <StForm>
@@ -51,12 +93,26 @@ export default function OptionForm({ productDetail }) {
         </StDescription>
         <StOptionWrapper>
           <StH3>옵션</StH3>
-          {optionFrameList && optionFrameList.map((options, idx) => <Selection key={idx} options={options} />)}
+          {optionFrameList &&
+            optionFrameList.map((options, idx) => {
+              const ableSelect = Object.values(optionSelected).length >= idx;
+
+              return (
+                <Selection
+                  key={idx}
+                  ableSelect={ableSelect}
+                  options={options}
+                  soldOutList={optionSoldOutList}
+                  optionSelected={optionSelected}
+                  onSelectOptions={handleSelectOptions}
+                />
+              );
+            })}
         </StOptionWrapper>
       </div>
       <StBtnWrapper>
         <StComment src={comment} alt="판매자에게 문의하기" />
-        <StButton type="submit" disabled={true}>
+        <StButton type="submit" disabled={btnDisabled}>
           {price} 구매하기
         </StButton>
       </StBtnWrapper>
