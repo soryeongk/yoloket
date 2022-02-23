@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import styled from "styled-components";
 
 import { comment, download } from "../../assets";
-import { checkSoldOut } from "../../lib";
 import { getProductOption } from "../../lib/api";
 import { Selection } from ".";
 
@@ -10,24 +9,38 @@ export default function OptionForm({ productDetail }) {
   const { id, price, material, delivery, description } = productDetail;
   const [optionFrameList, setOptionFrameList] = useState([]);
   const [optionGroupList, setOptionGroupList] = useState([]);
-  const [optionSoldOutList, setOptionSoldOutList] = useState([]);
 
   const [optionSelected, setOptionSelected] = useState({});
   const [btnDisabled, setBtnDisabled] = useState(true);
+
+  const selectableOptionList = (function () {
+    const result = {};
+
+    optionGroupList
+      .filter((optionGroup) => optionGroup.remainCount)
+      .map((option) => option.optionNameList)
+      .map((option) => {
+        const key = option[0] === "S" ? "스몰" : "라지";
+
+        return [key, option[1]];
+      })
+      .forEach((option) => {
+        if (!result[option[0]]) {
+          result[option[0]] = [];
+        }
+        if (!result[option[0]].includes(option[1])) {
+          result[option[0]].push(option[1]);
+        }
+      });
+
+    return result;
+  })();
 
   function handleSelectOptions(title, op) {
     setOptionSelected((current) => {
       const newObj = { ...current };
 
-      if (title === "사이즈") {
-        if (op === "스몰") {
-          newObj[title] = "S";
-        } else if (op === "라지") {
-          newObj[title] = "M";
-        }
-      } else {
-        newObj[title] = op;
-      }
+      newObj[title] = op;
 
       return newObj;
     });
@@ -47,28 +60,16 @@ export default function OptionForm({ productDetail }) {
   }, []);
 
   useEffect(() => {
-    if (optionFrameList.length && optionGroupList.length) {
-      const soldOutList = checkSoldOut(optionGroupList);
+    const selectedValues = Object.values(optionSelected);
 
-      setOptionSoldOutList(soldOutList);
+    if (!optionFrameList || !optionGroupList) {
+      return;
+    } else if (selectedValues.length && optionFrameList.length && selectedValues.length === optionFrameList.length) {
+      setBtnDisabled(false);
+    } else {
+      return;
     }
-  }, [optionGroupList]);
-
-  // useEffect(() => {
-  //   const selectedValues = Object.values(optionSelected);
-
-  //   if (!optionFrameList || !optionGroupList) {
-  //     return;
-  //   } else if (
-  //     selectedValues.length === optionFrameList.length &&
-  //     optionSoldOutList.length &&
-  //     !optionSoldOutList.includes(selectedValues.join(" / "))
-  //   ) {
-  //     setBtnDisabled(false);
-  //   } else {
-  //     return;
-  //   }
-  // }, [optionSelected]);
+  }, [optionSelected]);
 
   return (
     <StForm>
@@ -101,8 +102,8 @@ export default function OptionForm({ productDetail }) {
                 <Selection
                   key={idx}
                   ableSelect={ableSelect}
+                  selectableOption={selectableOptionList}
                   options={options}
-                  soldOutList={optionSoldOutList}
                   optionSelected={optionSelected}
                   onSelectOptions={handleSelectOptions}
                 />

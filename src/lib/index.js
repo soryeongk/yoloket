@@ -13,9 +13,3 @@ export function toggleMenu(e) {
 
   return;
 }
-
-export function checkSoldOut(optionList) {
-  const soldOutList = optionList.filter((option) => !option.remainCount);
-
-  return soldOutList;
-}

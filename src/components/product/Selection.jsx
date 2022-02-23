@@ -4,13 +4,15 @@ import styled, { css } from "styled-components";
 import { arrow, arrowActive } from "../../assets";
 import { toggleMenu } from "../../lib";
 
-export default function Selection({ ableSelect, options, soldOutList, optionSelected, onSelectOptions }) {
+export default function Selection({ ableSelect, selectableOption, options, optionSelected, onSelectOptions }) {
   const { optionTitle, optionFrameValueList } = options;
   const [optionValue, setOptionValue] = useState(`${optionTitle}를 선택해주세요`);
 
-  function handleOptionValue(op) {
-    setOptionValue(op);
-    onSelectOptions(optionTitle, op);
+  function handleOptionValue(isSoldOut, op) {
+    if (!isSoldOut) {
+      setOptionValue(op);
+      onSelectOptions(optionTitle, op);
+    }
   }
 
   function handleClickSelect(e) {
@@ -25,12 +27,28 @@ export default function Selection({ ableSelect, options, soldOutList, optionSele
     <StSelectWrapper ableselect={ableSelect} onClick={handleClickSelect}>
       <label>{optionValue}</label>
       <StSelect>
-        {optionFrameValueList &&
-          optionFrameValueList.map((option, i) => (
-            <StOption key={i} onClick={() => handleOptionValue(option)}>
-              {option}
-            </StOption>
-          ))}
+        {ableSelect &&
+          optionFrameValueList &&
+          optionFrameValueList.map((option, i) => {
+            let isSoldOut = false;
+
+            if (optionTitle === "사이즈" && !selectableOption[option]) {
+              isSoldOut = true;
+            } else if (
+              optionTitle !== "사이즈" &&
+              selectableOption[optionSelected["사이즈"]] &&
+              !selectableOption[optionSelected["사이즈"]].includes(option)
+            ) {
+              isSoldOut = true;
+            }
+
+            return (
+              <StOption key={i} issoldout={isSoldOut} onClick={() => handleOptionValue(isSoldOut, option)}>
+                {option}
+                {isSoldOut && " (품절)"}
+              </StOption>
+            );
+          })}
       </StSelect>
     </StSelectWrapper>
   );
@@ -53,6 +71,8 @@ const StSelectWrapper = styled.div`
   background: ${({ theme }) => theme.colors.white100};
   width: 100%;
   ${({ theme }) => theme.fonts.caption200}
+
+  cursor: pointer;
 
   &::after {
     position: absolute;
@@ -84,8 +104,15 @@ const StSelect = styled.ul`
 const StOption = styled.li`
   padding: 0.5rem 1.2rem;
 
-  &:hover {
-    background-color: ${({ theme }) => theme.colors.magenta100};
-    color: ${({ theme }) => theme.colors.magenta300};
-  }
+  ${({ issoldout }) =>
+    issoldout
+      ? css`
+          color: ${({ theme }) => theme.colors.gray100};
+        `
+      : css`
+          &:hover {
+            background-color: ${({ theme }) => theme.colors.magenta100};
+            color: ${({ theme }) => theme.colors.magenta300};
+          }
+        `}
 `;
