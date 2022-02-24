@@ -20,5 +20,5 @@ export function getProductDetail(id) {
 }
 
 export function getProductOption() {
-  return client.get("");
+  return client.get();
 }
