@@ -3,4 +3,7 @@ export { default as arrowActive } from "./arrowActive.svg";
 export { default as comment } from "./comment.svg";
 export { default as download } from "./download.svg";
 export { default as logo } from "./logo.svg";
+export { default as productImg } from "./productImg.png";
 export { default as store } from "./store.svg";
+export { default as storeImg } from "./storeImg.png";
+export { default as thumbnail } from "./thumbnail.png";

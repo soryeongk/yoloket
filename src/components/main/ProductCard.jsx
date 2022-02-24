@@ -1,12 +1,14 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
+import { thumbnail } from "../../assets";
+
 export default function ProductCard({ productDetail }) {
   const { id, name, price, country } = productDetail;
 
   return (
     <StCardWrapper to={`/product/${id}`}>
-      <StProductThumbnail src="image" alt="제품 썸네일" />
+      <StProductThumbnail src={thumbnail} alt="제품 썸네일" />
       <div>
         <StProductName>{name}</StProductName>
         <StPrice>{price}원</StPrice>

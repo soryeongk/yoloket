@@ -1,13 +1,13 @@
 import styled from "styled-components";
 
-import { store } from "../../assets";
+import { productImg, store, storeImg } from "../../assets";
 
 export default function ProductInfo() {
   return (
     <StSection>
-      <StProductImage src="imgUrl" alt="제품 이미지" />
+      <StProductImage src={productImg} alt="제품 이미지" />
       <StArticle>
-        <StStoreImage />
+        <StStoreImage src={storeImg} alt="판매자 대표 사진" />
         <StStoreWrapper>
           <StStoreTitle>
             <img src={store} alt="판매자 아이콘" />
@@ -41,15 +41,15 @@ const StArticle = styled.article`
   align-items: center;
   justify-content: space-between;
 
+  margin-top: 2rem;
   width: 100%;
 `;
 
-const StStoreImage = styled.div`
+const StStoreImage = styled.img`
   border-radius: 4rem;
-  background-color: gray;
 
-  width: 8rem;
-  height: 8rem;
+  width: 6rem;
+  height: 6rem;
 `;
 
 const StStoreWrapper = styled.div`
