@@ -5,7 +5,7 @@ export function toggleMenu(e) {
 
   const visibility = optionWrapper.style.visibility;
 
-  if (visibility === "hidden") {
+  if (!visibility || visibility === "hidden") {
     optionWrapper.style.visibility = "visible";
   } else {
     optionWrapper.style.visibility = "hidden";
